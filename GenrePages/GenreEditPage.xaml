@@ -1,6 +1,3 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
-<!-- Licensed under the MIT License. -->
-
 <Page
     x:Class="GameBib.GenreEditPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -40,6 +37,5 @@
             <TextBox Margin="0 0 10 0" PlaceholderText="Genre Description" x:Name="GenreDescription"/>
             <Button x:Name="myButton" Click="myButton_Click">Edit Genre</Button>
         </StackPanel>
-
     </Grid>
 </Page>
