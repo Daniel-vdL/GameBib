@@ -1,0 +1,61 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="GameBib.GenreViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameBib"
+    xmlns:localModel="using:GameBib.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView IsRightTapEnabled="True" RightTapped="GenreslistView_RightTapped" 
+                  IsItemClickEnabled="True" ItemClick="GenreslistView_ItemClick"
+                  Margin="0 20 0 0" MaxWidth="500" Grid.Row="0" x:Name="GenreslistView" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="localModel:Genre">
+                    <StackPanel Margin="0 10 0 0" Padding="10 0 0 0" BorderBrush="White" 
+                                BorderThickness="2" CornerRadius="10">
+                        <TextBlock Margin="0 10 0 0" Text="{x:Bind Name}"/>
+                        <StackPanel>
+                            <TextBlock Margin="15 5 0 10" Text="{x:Bind Description}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Row="1" Padding="0 10 0 0" Margin="0 10 0 0" BorderBrush="White" BorderThickness="0 1 0 0 ">
+            <StackPanel Margin="0 10 0 10" Grid.Row="1" Orientation="Horizontal" 
+                        HorizontalAlignment="Center" MaxWidth="500">
+                <Button x:Name="ReturnButton" Margin="0 0 10 0" Click="ReturnButton_Click">Go back</Button>
+                <Button x:Name="SearchGenres" Click="SearchGenres_Click">Refresh</Button>
+            </StackPanel>
+
+            <StackPanel Margin="0 0 0 15" Grid.Row="2" Orientation="Horizontal"
+                        HorizontalAlignment="Center" MaxWidth="1000">
+                <TextBox PlaceholderText="Name" x:Name="GenreName"/>
+                <TextBox Margin="0 0 10 0" PlaceholderText="Description" x:Name="GenreDescription"/>
+                <Button x:Name="myButton" Click="myButton_Click">Create Genre</Button>
+            </StackPanel>
+
+            <ContentDialog x:Name="databaseErrorDialog"
+                       PrimaryButtonText="Ok">
+                <TextBlock>
+                This genre was already removed!
+                </TextBlock>
+            </ContentDialog>
+        </ListView>
+
+    </Grid>
+</Page>
