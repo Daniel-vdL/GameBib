@@ -28,6 +28,7 @@ namespace GameBib.GamePages
             this.InitializeComponent();
 
             var games = db.Games
+                .Include(g => g.Genre)
                 .ToList()
                 .OrderByDescending(r => r.Release).ToList();
 
@@ -48,7 +49,7 @@ namespace GameBib.GamePages
 
             using var db = new AppDbContext();
             var games = db.Games
-                //.Where(g => g.Name.Contains(SearchTextBox.Text))
+                .Include(g => g.Genre)
                 .OrderByDescending(r => r.Release).ToList();
             GamesListView.ItemsSource = games;
         }

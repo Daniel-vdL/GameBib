@@ -60,5 +60,10 @@ namespace GameBib
         {
             this.Frame.Navigate(typeof(FavoriteViewPage));
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LoginPage));
+        }
     }
 }

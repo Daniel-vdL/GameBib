@@ -40,16 +40,16 @@
 
         <StackPanel Margin="0 10 0 15" Grid.Row="2" Orientation="Horizontal"
                         HorizontalAlignment="Center" MaxWidth="1000">
-            <TextBox PlaceholderText="Name" x:Name="GameName"/>
-            <ComboBox x:Name="GameGenreComboBox">
+            <TextBox Margin="0 0 10 0" PlaceholderText="Name" x:Name="GameName"/>
+            <ComboBox Margin="0 0 10 0" x:Name="GameGenreComboBox">
                 <ComboBox.ItemTemplate>
                     <DataTemplate x:DataType="localModel:Genre">
                         <TextBlock Text="{x:Bind Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBox PlaceholderText="Game Description" x:Name="GameDescription"/>
-            <DatePicker x:Name="GameRelease"/>
+            <TextBox Margin="0 0 10 0" PlaceholderText="Game Description" x:Name="GameDescription"/>
+            <DatePicker Margin="0 0 10 0" x:Name="GameRelease"/>
             <TextBox Margin="0 0 10 0" PlaceholderText="Game Rating" x:Name="GameRating"/>
         </StackPanel>
     </Grid>

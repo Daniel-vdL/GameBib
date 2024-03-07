@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation and Contributors.
-// Licensed under the MIT License.
-
 using GameBib.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
@@ -19,14 +16,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace GameBib
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GenreViewPage : Page
     {
         public static User CurrentUser { get; set; }
@@ -57,7 +48,6 @@ namespace GameBib
             SearchGenres.Content = "Refresh";
             using var db = new AppDbContext();
             var genres = db.Genres
-                    //.Where(g => g.Name.Contains(SearchTextBox.Text))
                     .OrderByDescending(i => i.Id).ToList();
             GenreslistView.ItemsSource = genres;
         }
@@ -80,13 +70,12 @@ namespace GameBib
                 db.SaveChanges();
 
                 var genres = db.Genres
-                    //.Where(g => g.Name.Contains(SearchTextBox.Text))
                     .OrderByDescending(i => i.Id).ToList();
                 GenreslistView.ItemsSource = genres;
             }
         }
 
-        private async void GenreslistView_RightTapped(object sender, RoutedEventArgs e)
+        private void GenreslistView_RightTapped(object sender, RoutedEventArgs e)
         {
             var listViewItem = (FrameworkElement)e.OriginalSource;
             var selectedGenre = (Genre)listViewItem.DataContext;
@@ -115,8 +104,7 @@ namespace GameBib
 
                     if (databaseValues == null)
                     {
-                        await databaseErrorDialog.ShowAsync();
-                        // BUG:     https://github.com/microsoft/microsoft-ui-xaml/issues/1679
+
                     }
                     else
                     {

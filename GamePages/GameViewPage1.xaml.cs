@@ -29,6 +29,7 @@ namespace GameBib
             GameGenreComboBox.ItemsSource = db.Genres.ToList();
 
             var games = db.Games
+                .Include(g => g.Genre)
                 .ToList()
                 .OrderByDescending(r => r.Release).ToList();
 
@@ -62,7 +63,7 @@ namespace GameBib
                 db.SaveChanges();
 
                 var games = db.Games
-                    //.Where(g => g.Name.Contains(SearchTextBox.Text))
+                    .Include(g => g.Genre)
                     .OrderByDescending(r => r.Release).ToList();
                 GamesListView.ItemsSource = games;
             }
@@ -74,7 +75,7 @@ namespace GameBib
 
             using var db = new AppDbContext();
             var games = db.Games
-                //.Where(g => g.Name.Contains(SearchTextBox.Text))
+                .Include(g => g.Genre)
                 .OrderByDescending(r => r.Release).ToList();
             GamesListView.ItemsSource = games;
         }
@@ -91,7 +92,7 @@ namespace GameBib
             this.Frame.Navigate(typeof(GameEditPage), selectedGame.Id);
         }
 
-        private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
+        private void GamesListView_RightTapped(object sender, RoutedEventArgs e)
         {
             var listViewItem = (FrameworkElement)e.OriginalSource;
             var selectedGame = (Game)listViewItem.DataContext;
@@ -120,8 +121,7 @@ namespace GameBib
 
                     if (databaseValues == null)
                     {
-                        await databaseErrorDialog.ShowAsync();
-                        // BUG:     https://github.com/microsoft/microsoft-ui-xaml/issues/1679
+
                     }
                     else
                     {
