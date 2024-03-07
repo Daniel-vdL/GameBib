@@ -167,6 +167,14 @@ namespace GameBib.Models
                      Username = "user1",
                      Password = SecureHasher.Hash("1234"),
                      IsAdmin = false,
+                 },
+                 new User
+                 {
+                     Id = 3,
+                     Name = "Daniel",
+                     Username = "Duckie",
+                     Password = SecureHasher.Hash("6465"),
+                     IsAdmin = false,
                  }
             );
 

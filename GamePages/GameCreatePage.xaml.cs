@@ -24,9 +24,6 @@ using Windows.Foundation.Collections;
 
 namespace GameBib.GamePages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GameCreatePage : Page
     {
         private ObservableCollection<Game> allGames;

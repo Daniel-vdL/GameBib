@@ -64,10 +64,47 @@ namespace GameBib.GamePages
             var selectedGame = (Game)e.ClickedItem;
         }
 
-        private void GamesListView_RightTapped(object sender, RoutedEventArgs e)
+        private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
         {
             var listViewItem = (FrameworkElement)e.OriginalSource;
             var selectedGame = (Game)listViewItem.DataContext;
+
+            using (var db = new AppDbContext())
+            {
+                bool isFavorited = db.FavoritedGames
+                    .Any(g => g.GameId == selectedGame.Id && g.UserId == User.CurrentUser.Id);
+
+                if (isFavorited)
+                {
+                    ContentDialog ErrorDialog = new ContentDialog
+                    {
+                        Title = "Game is already favorited",
+                        Content = "Click 'Ok' to continue",
+                        CloseButtonText = "Ok",
+                        XamlRoot = this.XamlRoot,
+                    };
+
+                    ContentDialogResult result1 = await ErrorDialog.ShowAsync();
+                    return;
+                }
+
+                db.FavoritedGames.Add(new FavoritedGame
+                {
+                    GameId = selectedGame.Id,
+                    UserId = User.CurrentUser.Id,
+                });
+                db.SaveChanges();
+
+                ContentDialog FavoritedDialog = new ContentDialog
+                {
+                    Title = "Game added to Favorites",
+                    Content = "Click 'Ok' to continue",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.XamlRoot,
+                };
+
+                ContentDialogResult result = await FavoritedDialog.ShowAsync();
+            };
         }
     }
 }
