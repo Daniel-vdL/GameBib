@@ -40,7 +40,6 @@ namespace GameBib
         }
 
 
-
         internal async void loginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = Username.Text;
@@ -53,6 +52,7 @@ namespace GameBib
                 if (user != null && VerifyPassword(inputPassword, user.Password, username))
                 {
                     Models.User.CurrentUser = user;
+
                     Frame.Navigate(typeof(MainViewPage));
                 }
                 else

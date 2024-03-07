@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using GameBib.GamePages;
 using GameBib.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -40,7 +41,14 @@ namespace GameBib
 
         private void GamePageButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GameViewPage1));
+            if(User.CurrentUser.IsAdmin == true) 
+            {
+                this.Frame.Navigate(typeof(GameViewPage1));
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(GameViewPage2));
+            }
         }
 
         private void GenrePageButton_Click(object sender, RoutedEventArgs e)
