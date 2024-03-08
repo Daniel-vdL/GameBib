@@ -18,12 +18,12 @@ using Windows.Foundation.Collections;
 
 namespace GameBib
 {
-    public sealed partial class GenreViewPage : Page
+    public sealed partial class GenreViewPageAdmin : Page
     {
         public static User CurrentUser { get; set; }
         private ObservableCollection<Genre> allGenres;
 
-        public GenreViewPage()
+        public GenreViewPageAdmin()
         {
             this.InitializeComponent();
             using var db = new AppDbContext();

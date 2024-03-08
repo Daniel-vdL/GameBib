@@ -18,11 +18,11 @@ using Windows.Foundation.Collections;
 
 namespace GameBib
 {
-    public sealed partial class GameViewPage1 : Page
+    public sealed partial class GameViewPageAdmin : Page
     {
         private ObservableCollection<Game> allGames;
 
-        public GameViewPage1()
+        public GameViewPageAdmin()
         {
             using var db = new AppDbContext();
             this.InitializeComponent();

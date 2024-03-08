@@ -1,11 +1,11 @@
 <Page
-    x:Class="GameBib.GamePages.GameCreatePage"
+    x:Class="GameBib.GamePages.GameViewPageUser"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:GameBib.GamePages"
-    xmlns:localModel="using:GameBib.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:localModel="using:GameBib.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -45,31 +45,8 @@
             <StackPanel Margin="0 10 0 10" Grid.Row="1" Orientation="Horizontal" 
                         HorizontalAlignment="Center" MaxWidth="500">
                 <Button Margin="0 0 10 0" x:Name="ReturnButton" Click="ReturnButton_Click">Go back</Button>
-                <Button Margin="0 0 10 0" x:Name="myButton" Click="myButton_Click">Create Game</Button>
                 <Button x:Name="SearchGames" Click="SearchGames_Click">Refresh</Button>
             </StackPanel>
-
-            <StackPanel Margin="0 0 0 15" Grid.Row="2" Orientation="Horizontal"
-                        HorizontalAlignment="Center" MaxWidth="1000">
-                <TextBox PlaceholderText="Name" x:Name="GameName"/>
-                <ComboBox x:Name="GameGenreComboBox">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="localModel:Genre">
-                            <TextBlock Text="{x:Bind Name}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <TextBox PlaceholderText="Game Description" x:Name="GameDescription"/>
-                <DatePicker x:Name="GameRelease"/>
-                <TextBox Margin="0 0 10 0" PlaceholderText="Game Rating" x:Name="GameRating"/>
-            </StackPanel>
-
-            <ContentDialog x:Name="databaseErrorDialog"
-                       PrimaryButtonText="Ok">
-                <TextBlock>
-                This game was already removed!
-                </TextBlock>
-            </ContentDialog>
         </ListView>
     </Grid>
 </Page>

@@ -18,11 +18,11 @@ using Windows.Foundation.Collections;
 
 namespace GameBib.GamePages
 {
-    public sealed partial class GameViewPage2 : Page
+    public sealed partial class GameViewPageUser : Page
     {
         private ObservableCollection<Game> allGames;
 
-        public GameViewPage2()
+        public GameViewPageUser()
         {
             using var db = new AppDbContext();
             this.InitializeComponent();
@@ -62,6 +62,8 @@ namespace GameBib.GamePages
         private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selectedGame = (Game)e.ClickedItem;
+
+            this.Frame.Navigate(typeof(GameInfoPage), selectedGame.Id);
         }
 
         private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)

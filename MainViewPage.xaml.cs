@@ -43,11 +43,11 @@ namespace GameBib
         {
             if(User.CurrentUser.IsAdmin == true) 
             {
-                this.Frame.Navigate(typeof(GameViewPage1));
+                this.Frame.Navigate(typeof(GameViewPageAdmin));
             }
             else
             {
-                this.Frame.Navigate(typeof(GameViewPage2));
+                this.Frame.Navigate(typeof(GameViewPageUser));
             }
         }
 
