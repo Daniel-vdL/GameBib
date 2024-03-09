@@ -56,7 +56,7 @@ namespace GameBib
 
         private void returnButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GenreViewPage));
+            this.Frame.Navigate(typeof(GenreViewPageAdmin));
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)

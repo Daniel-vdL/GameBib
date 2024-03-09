@@ -53,7 +53,7 @@ namespace GameBib
 
         private void GenrePageButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GenreViewPage));
+            this.Frame.Navigate(typeof(GenreViewPageAdmin));
         }
 
         private void FavoritePageButton_Click(object sender, RoutedEventArgs e)
