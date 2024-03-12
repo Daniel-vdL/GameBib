@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 using System.Threading.Tasks;
 
 namespace GameBib.Models
@@ -18,14 +19,11 @@ namespace GameBib.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //Go to the App.config.example file and then follow Instructions
+
             optionsBuilder.UseMySql(
-                "server=localhost;" +
-                "port=3306;" +
-                "user=root;" +
-                "password=admin123;" +
-                "database=gamedib;",
-                ServerVersion.Parse("5.7.33-winx64")
-            );
+                ConfigurationManager.ConnectionStrings["GameBib"].ConnectionString,
+                ServerVersion.Parse("5.7.33-winx64"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
