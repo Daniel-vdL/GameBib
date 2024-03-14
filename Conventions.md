@@ -1,6 +1,6 @@
-﻿# Coventions BarrocIntens
+﻿# Coventions GameBib
 **What is this?**:
-These are the Coventions for BarrocIntens.
+These are the Coventions for GameBib.
 
 **GitHub Rules**
 - **Rule 1:** Do not push errors, or code that isn't finished unless Everyone needs the code!
