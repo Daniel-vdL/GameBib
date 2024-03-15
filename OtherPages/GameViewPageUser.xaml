@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="GameBib.OtherPages.GameViewPageUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameBib.OtherPages"
+    xmlns:localData="using:GameBib.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView IsRightTapEnabled="True" RightTapped="GamesListView_RightTapped" 
+              IsItemClickEnabled="True" ItemClick="GamesListView_ItemClick" 
+              Margin="0 20 0 0" MaxWidth="500" Grid.Row="0" x:Name="GamesListView" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="localData:Game">
+                    <StackPanel Margin="0 10 0 0" Padding="10 0 0 0" BorderBrush="White" 
+                            BorderThickness="2" CornerRadius="10">
+                        <TextBlock Margin="0 10 0 0" Text="{x:Bind Name}"/>
+                        <!--<StackPanel>
+                            <TextBlock Margin="15 5 0 0" Text="{x:Bind Description}"/>
+                            <StackPanel Margin ="15 0 0 0"  Orientation="Horizontal">
+                                <TextBlock Text="Genre: "/>
+                                <TextBlock Margin="5 0 0 0" Text="{x:Bind Genre.Name}"/>
+                            </StackPanel>
+                            <StackPanel Margin ="15 0 0 0"  Orientation="Horizontal">
+                                <TextBlock Text="Rating: "/>
+                                <TextBlock Margin="5 0 0 0" Text="{x:Bind Rating}"/>
+                            </StackPanel>
+                            <TextBlock Margin="15 0 0 10" Text="{x:Bind Release}"/>
+                        </StackPanel>-->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Row="1" Padding="0 10 0 0" Margin="0 10 0 0" BorderBrush="White" BorderThickness="0 1 0 0 ">
+            <StackPanel Margin="0 10 0 10" Grid.Row="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" MaxWidth="500">
+                <Button Margin="0 0 10 0" x:Name="ReturnButton" Click="ReturnButton_Click">Go back</Button>
+                <Button x:Name="SearchGames" Click="SearchGames_Click">Refresh</Button>
+            </StackPanel>
+        </ListView>
+    </Grid>
+</Page>
