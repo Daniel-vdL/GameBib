@@ -1,4 +1,5 @@
 using GameBib.Login;
+using GameBib.OtherPages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -22,7 +23,7 @@ namespace GameBib
         {
             this.InitializeComponent();
 
-            this.rootFrame.Navigate(typeof(LoginPage));
+            this.rootFrame.Navigate(typeof(GameViewPageUser));
         }
     }
 }

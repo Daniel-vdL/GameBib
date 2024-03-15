@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="GameBib.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GameBib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="50" Grid.Row="0" HorizontalAlignment="Center" Margin="0 200 0 0">GameBib</TextBlock>
+        <ListView BorderBrush="White" BorderThickness="2" MaxWidth="300" MaxHeight="100"  CornerRadius="10" Grid.Row="1" x:Name="MainPage" >
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="0 10 10 0" x:Name="GamePageButton" Click="GamePageButton_Click">Game Page</Button>
+                <Button Margin="0 10 0 0" x:Name="GenrePageButton" Click="GenrePageButton_Click">Genre Page</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="0 10 10 0" x:Name="FavoritePageButton" Click="FavoritePageButton_Click">Favorite</Button>
+                <Button Margin="0 10 0 0" x:Name="LogoutButton" Click="LogoutButton_Click">Logout</Button>
+            </StackPanel>
+        </ListView>
+    </Grid>
+</Page>
