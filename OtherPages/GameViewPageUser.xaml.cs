@@ -38,7 +38,7 @@ namespace GameBib.OtherPages
         public async void LoadGames()
         {
 
-            string url = "https://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=STEAMKEY&format=json";
+            string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
 
             var client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -51,7 +51,8 @@ namespace GameBib.OtherPages
 
             var games = JsonSerializer.Deserialize<List<Game>>(content, options);
 
-            GamesListView.ItemsSource = games;
+            nameTextBlock.Text = games[0].Name.ToString;
+            //GamesListView.ItemsSource = games;
 
         }
 

@@ -15,6 +15,7 @@ namespace GameBib.Models
         public double Rating { get; set; }
         public int GenreId { get; set; }
 
+        public List<Game> Games { get; set; }
         public Genre Genre { get; set; }
         
         public ICollection<FavoritedGame> FavoritedGames { get; set; }
