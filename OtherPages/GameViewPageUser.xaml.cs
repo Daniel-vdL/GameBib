@@ -18,14 +18,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using static System.Net.WebRequestMethods;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace GameBib.OtherPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GameViewPageUser : Page
     {
         public GameViewPageUser()
@@ -38,7 +32,7 @@ namespace GameBib.OtherPages
         public async void LoadGames()
         {
 
-            string url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
+            string url = "https://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=B976BE1109B7F01F799B71141600B4F9&format=json";
 
             var client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -49,10 +43,10 @@ namespace GameBib.OtherPages
                 PropertyNameCaseInsensitive = true,
             };
 
-            var games = JsonSerializer.Deserialize<List<Game>>(content, options);
+            var games = JsonSerializer.Deserialize<RootObject>(content, options);
 
-            nameTextBlock.Text = games[0].Name.ToString;
-            //GamesListView.ItemsSource = games;
+            var filteredGames = games.applist.apps.Where(game => !string.IsNullOrEmpty(game.name)).ToList();
+            GamesListView.ItemsSource = filteredGames;
 
         }
 
@@ -68,7 +62,7 @@ namespace GameBib.OtherPages
 
         private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var selectedGame = (Game)e.ClickedItem;
+            //var selectedGame = (Game)e.ClickedItem;
 
             //this.Frame.Navigate(typeof(GameInfoPage), selectedGame.Id);
         }

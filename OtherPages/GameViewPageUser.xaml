@@ -21,22 +21,10 @@
               IsItemClickEnabled="True" ItemClick="GamesListView_ItemClick" 
               Margin="0 20 0 0" MaxWidth="500" Grid.Row="0" x:Name="GamesListView" >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="localData:Game">
+                <DataTemplate x:DataType="localData:App">
                     <StackPanel Margin="0 10 0 0" Padding="10 0 0 0" BorderBrush="White" 
                             BorderThickness="2" CornerRadius="10">
-                        <TextBlock Margin="0 10 0 0"  x:Name="nameTextBlock" Text="{x:Bind Name}"/>
-                        <!--<StackPanel>
-                            <TextBlock Margin="15 5 0 0" Text="{x:Bind Description}"/>
-                            <StackPanel Margin ="15 0 0 0"  Orientation="Horizontal">
-                                <TextBlock Text="Genre: "/>
-                                <TextBlock Margin="5 0 0 0" Text="{x:Bind Genre.Name}"/>
-                            </StackPanel>
-                            <StackPanel Margin ="15 0 0 0"  Orientation="Horizontal">
-                                <TextBlock Text="Rating: "/>
-                                <TextBlock Margin="5 0 0 0" Text="{x:Bind Rating}"/>
-                            </StackPanel>
-                            <TextBlock Margin="15 0 0 10" Text="{x:Bind Release}"/>
-                        </StackPanel>-->
+                        <TextBlock Margin="0 10 0 0"  x:Name="nameTextBlock" Text="{x:Bind name}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
