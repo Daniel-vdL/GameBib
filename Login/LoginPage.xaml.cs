@@ -1,3 +1,5 @@
+using GameBib.Models;
+using GameBib.OtherPages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -9,7 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -22,7 +26,54 @@ namespace GameBib.Login
             this.InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            var username = UsernameTextbox.Text;
+            var password = PasswordTextbox.Text;
+            var client = new HttpClient();
+
+            var user = new User
+            {
+                Username = username,
+                Password = password
+            };
+
+            var userJson = JsonSerializer.Serialize(user);
+
+            var context = new StringContent(userJson, System.Text.Encoding.UTF8, "Application/Json");
+
+            var response = await client.PostAsync("https://localhost:7063/api/Users/Login", context);
+
+            if (response.IsSuccessStatusCode == false)
+            {
+                ContentDialog ErrorDialog = new ContentDialog
+                {
+                    Title = "Login failed!",
+                    Content = "Click 'Ok' to continue",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.XamlRoot,
+                };
+
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
+
+                return;
+            }
+
+            var answerJson = await response.Content.ReadAsStringAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+
+            var answerUser = JsonSerializer.Deserialize<User>(answerJson, options);
+
+            User.CurrentUser = answerUser;
+
+            this.Frame.Navigate(typeof(MainTestPage));
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
