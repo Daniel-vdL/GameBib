@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Login\LoginPage.xaml" />
+    <None Remove="Login\RegistrationPage.xaml" />
     <None Remove="OtherPages\MainTestPage.xaml" />
   </ItemGroup>
 
@@ -54,6 +55,11 @@
   <ItemGroup>
     <Folder Include="GamePages\" />
     <Folder Include="GenrePages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Login\RegistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="OtherPages\MainTestPage.xaml">
