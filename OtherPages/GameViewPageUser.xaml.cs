@@ -66,20 +66,12 @@ namespace GameBib.OtherPages
             LoadGames();
         }
 
-        private void GamesListView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (e.OriginalSource is FrameworkElement element)
-            {
-                if (element.DataContext is App selectedGame)
-                {
-                    Frame.Navigate(typeof(GameDetailViewPage), selectedGame);
-                }
-                else
-                {
-                    // DataContext is not set correctly
-                    Debug.WriteLine("DataContext is not an App object.");
-                }
-            }
+            var selectedGame = (Models.App)e.ClickedItem;
+            Frame.Navigate(typeof(GameDetailViewPage), selectedGame);
         }
     }
 }
+
+
