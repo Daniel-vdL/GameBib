@@ -17,6 +17,7 @@ using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using static System.Net.WebRequestMethods;
+using System.Diagnostics;
 
 namespace GameBib.OtherPages
 {
@@ -50,10 +51,39 @@ namespace GameBib.OtherPages
 
         }
 
-        private void SearchGames_Click(object sender, RoutedEventArgs e)
-        {
-            //
-        }
+        //private async Task<GameDetailInfo> GetDetailedGameInfo(int appId)
+        //{
+        //    // Here you make another API call to get detailed information about the game using its ID.
+        //    // You might need to replace this with your actual API endpoint and implementation.
+        //    string detailedInfoUrl = $"https://store.steampowered.com/api/appdetails?appids={appId}";
+
+        //    using (var client = new HttpClient())
+        //    {
+        //        try
+        //        {
+        //            var response = await client.GetAsync(detailedInfoUrl);
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                var content = await response.Content.ReadAsStringAsync();
+        //                // Deserialize the JSON response to your detailed game info model
+        //                var detailedInfo = JsonSerializer.Deserialize<GameDetailInfo>(content);
+        //                return detailedInfo;
+        //            }
+        //            else
+        //            {
+        //                // Handle non-success status code
+        //                // You might want to log the error or handle it accordingly.
+        //                return null;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Handle exceptions
+        //            // You might want to log the exception or handle it accordingly.
+        //            return null;
+        //        }
+        //    }
+        //}
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
@@ -62,14 +92,48 @@ namespace GameBib.OtherPages
 
         private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //var selectedGame = (Game)e.ClickedItem;
+            //var selectedGame = (App)e.ClickedItem;
 
-            //this.Frame.Navigate(typeof(GameInfoPage), selectedGame.Id);
+            //// Assuming your API provides detailed information about the game based on its ID.
+            //var detailedGameInfo = await GetDetailedGameInfo(selectedGame.appid);
+
+            //if (detailedGameInfo != null)
+            //{
+            //    // Navigate to GameDetailViewPage and pass detailed game information
+            //    this.Frame.Navigate(typeof(GameDetailViewPage), detailedGameInfo);
+            //}
+            //else
+            //{
+            //    // Handle case where detailed information about the game is not available
+            //    // You can display an error message or handle it as per your requirement.
+            //}
+
+            //if (e.ClickedItem != null && e.ClickedItem is App selectedGame)
+            //{
+            //    // Ensure that the appid is accessible
+            //    if (selectedGame.appid != 0) // Assuming appid cannot be 0
+            //    {
+            //        this.Frame.Navigate(typeof(GameDetailViewPage), selectedGame.appid);
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine("Invalid appid.");
+            //    }
+            //}
+            //else
+            //{
+            //    Debug.WriteLine("Clicked item is not an App or is null.");
+            //}
         }
 
         private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
         {
             //
+        }
+
+        private void RefreshGames_Click(object sender, RoutedEventArgs e)
+        {
+            LoadGames(); 
         }
     }
 }

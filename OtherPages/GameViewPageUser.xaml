@@ -25,6 +25,7 @@
                     <StackPanel Margin="0 10 0 0" Padding="10 0 0 0" BorderBrush="White" 
                             BorderThickness="2" CornerRadius="10">
                         <TextBlock Margin="0 10 0 0"  x:Name="nameTextBlock" Text="{x:Bind name}"/>
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -34,7 +35,7 @@
             <StackPanel Margin="0 10 0 10" Grid.Row="1" Orientation="Horizontal" 
                     HorizontalAlignment="Center" MaxWidth="500">
                 <Button Margin="0 0 10 0" x:Name="ReturnButton" Click="ReturnButton_Click">Go back</Button>
-                <Button x:Name="SearchGames" Click="SearchGames_Click">Refresh</Button>
+                <Button x:Name="RefreshGames" Click="RefreshGames_Click">Refresh</Button>
             </StackPanel>
         </ListView>
     </Grid>
