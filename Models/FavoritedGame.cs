@@ -12,7 +12,6 @@ namespace GameBib.Models
         public int GameId { get; set; }
         public int UserId { get; set; }
 
-        public Game game { get; set; }
         public User user { get; set; }
     }
 }
