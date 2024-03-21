@@ -12,7 +12,7 @@ namespace GameBib.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int statusId { get; set; }
+        public int? statusId { get; set; }
 
         public ICollection<FavoritedGame> FavoritedGames { get; set; }
         public ICollection<FavoritedGenre> FavoritedGenres { get; set; }

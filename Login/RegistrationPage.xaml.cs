@@ -63,7 +63,7 @@ namespace GameBib.Login
 
                 User.CurrentUser = answerUser;
 
-                this.Frame.Navigate(typeof(MainTestPage));
+                this.Frame.Navigate(typeof(DashboardPage));
 
             }
         }

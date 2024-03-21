@@ -62,10 +62,14 @@
     <Folder Include="GenrePages\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="OtherPages\GameDetailViewPage.xaml">
-    <Page Update="Login\RegistrationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+	<Page Update="OtherPages\GameDetailViewPage.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
+   </ItemGroup>
+  <ItemGroup>
+	<Page Update="Login\RegistrationPage.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="OtherPages\FavoriteViewPage.xaml">

@@ -23,7 +23,7 @@ namespace GameBib
         {
             this.InitializeComponent();
 
-            this.rootFrame.Navigate(typeof(GameViewPageUser));
+            this.rootFrame.Navigate(typeof(LoginPage));
         }
     }
 }

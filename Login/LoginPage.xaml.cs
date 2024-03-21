@@ -70,7 +70,7 @@ namespace GameBib.Login
 
             User.CurrentUser = answerUser;
 
-            this.Frame.Navigate(typeof(MainTestPage));
+            this.Frame.Navigate(typeof(DashboardPage));
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)

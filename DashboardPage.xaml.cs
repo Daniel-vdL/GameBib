@@ -39,7 +39,7 @@ namespace GameBib
 
         private void GamePageButton_Click(object sender, RoutedEventArgs e)
         {
-            if (User.CurrentUser.IsAdmin == true)
+            if (User.CurrentUser.statusId == 1)
             {
                 this.Frame.Navigate(typeof(GameViewPageAdmin));
             }
