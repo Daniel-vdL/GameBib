@@ -14,6 +14,7 @@
   <ItemGroup>
     <None Remove="DashboardPage.xaml" />
     <None Remove="Login\LoginPage.xaml" />
+    <None Remove="Login\RegistrationPage.xaml" />
     <None Remove="OtherPages\FavoriteViewPage.xaml" />
     <None Remove="OtherPages\GameDetailViewPage.xaml" />
     <None Remove="OtherPages\GameViewPageAdmin.xaml" />
@@ -62,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="OtherPages\GameDetailViewPage.xaml">
+    <Page Update="Login\RegistrationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
