@@ -10,6 +10,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="U zijt op de pagina aangekomen"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Padding="10 0 10 0" HorizontalAlignment="Center" Orientation="Vertical"
+                Margin="0 200 0 0"
+                Grid.Row="0"
+                Grid.Column="0">
+            <TextBlock x:Name="nameTextBlock"
+                   FontWeight="ExtraBold"
+                   FontSize="24"/>
+            <TextBlock x:Name="descriptionTextBlock"
+                   FontStyle="Italic"/>
+            <TextBlock x:Name="genreTextBlock"
+                   FontStyle="Italic"/>
+            <TextBlock x:Name="releaseTextBlock"
+                   FontStyle="Italic"/>
+            <TextBlock x:Name="ratingTextBlock"
+                   FontStyle="Italic"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" >
+            <Button Margin="0 0 10 0" x:Name="returnButton" Click="returnButton_Click">Go back</Button>
+        </StackPanel>
     </Grid>
 </Page>
