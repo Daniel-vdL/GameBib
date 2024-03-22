@@ -27,7 +27,8 @@
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
-            <Button Margin="0 0 0 10" Content="Change Account Details" Padding="10,5" Width="200"/>
+            <TextBox Margin="0 0 0 10" x:Name="UsernameTextbox" PlaceholderText="Enter a username"/>
+            <Button Margin="0 0 0 10" Content="Change Username" Padding="10,5" Width="200" x:Name="NameChangeButton" Click="NameChangeButton_Click"/>
             <Button Content="Return" Padding="10,5" Width="200" x:Name="ReturnButton" Click="ReturnButton_Click"/>
         </StackPanel>
     </Grid>
