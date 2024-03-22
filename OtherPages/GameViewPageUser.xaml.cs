@@ -27,10 +27,10 @@ namespace GameBib.OtherPages
         {
             this.InitializeComponent();
 
-            LoadGames();
+            LoadApps();
         }
 
-        public async void LoadGames()
+        public async void LoadApps()
         {
 
             string url = "https://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=B976BE1109B7F01F799B71141600B4F9&format=json";
@@ -63,7 +63,7 @@ namespace GameBib.OtherPages
 
         private void RefreshGames_Click(object sender, RoutedEventArgs e)
         {
-            LoadGames();
+            LoadApps();
         }
 
         private void GamesListView_ItemClick(object sender, ItemClickEventArgs e)
