@@ -33,6 +33,7 @@ namespace GameBib.OtherPages
         private async void NameChangeButton_Click(object sender, RoutedEventArgs e)
         {
             var username = UsernameTextbox.Text;
+            var password = PasswordTextbox.Text;
 
             if (!string.IsNullOrWhiteSpace(username))
             {
@@ -41,7 +42,8 @@ namespace GameBib.OtherPages
                 var user = new User
                 {
                     Id = User.CurrentUser.Id,
-                    Username = username
+                    Username = username,
+                    Password = password,
                 };
 
                 var userJson = JsonSerializer.Serialize(user);
@@ -51,7 +53,6 @@ namespace GameBib.OtherPages
                 {
                     var response = await client.PutAsync($"https://localhost:7063/api/Users/{User.CurrentUser.Id}", context);
 
-                    // Check if the request was successful
                     if (response.IsSuccessStatusCode)
                     {
                         User.CurrentUser = user;
