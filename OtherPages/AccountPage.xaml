@@ -29,7 +29,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
             <TextBox Margin="0 0 0 10" x:Name="UsernameTextbox" PlaceholderText="Enter a username"/>
             <TextBox Margin="0 0 0 10" x:Name="PasswordTextbox" PlaceholderText="Enter a password"/>
-            <Button Margin="0 0 0 10" Content="Change Username" Padding="10,5" Width="200" x:Name="NameChangeButton" Click="NameChangeButton_Click"/>
+            <Button Margin="0 0 0 10" Content="Change User Info" Padding="10,5" Width="200" x:Name="InfoChangeButton" Click="InfoChangeButton_Click"/>
             <Button Content="Return" Padding="10,5" Width="200" x:Name="ReturnButton" Click="ReturnButton_Click"/>
         </StackPanel>
     </Grid>

@@ -30,7 +30,7 @@ namespace GameBib.OtherPages
             this.Frame.Navigate(typeof(DashboardPage));
         }
 
-        private async void NameChangeButton_Click(object sender, RoutedEventArgs e)
+        private async void InfoChangeButton_Click(object sender, RoutedEventArgs e)
         {
             var username = UsernameTextbox.Text;
             var password = PasswordTextbox.Text;
