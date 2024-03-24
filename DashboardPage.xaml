@@ -17,12 +17,12 @@
         <TextBlock FontSize="50" Grid.Row="0" HorizontalAlignment="Center" Margin="0 0 0 0" Foreground="#7289DA" FontWeight="Bold">Welcome to the Gamebib</TextBlock>
         <StackPanel Background="#2C2F33" BorderBrush="#7289DA" BorderThickness="2" CornerRadius="10" Padding="10" Margin="100" Grid.Row="1">
             <StackPanel HorizontalAlignment="Center" Margin="0 10 0 10" Orientation="Horizontal">
-                <Button MinWidth="100" CornerRadius="10" Margin="0 0 10 0" x:Name="GamePageButton" Click="GamePageButton_Click" Background="#7289DA" Foreground="White">Game Page</Button>
-                <Button MinWidth="100" CornerRadius="10" Margin="0 0 0 0" x:Name="AccountPageButton" Click="AccountPageButton_Click" Background="#7289DA" Foreground="White">Genre Page</Button>
+                <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 10 0" x:Name="GamePageButton" Click="GamePageButton_Click" Background="#7289DA" Foreground="White">Game Page</Button>
+                <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 0 0" x:Name="AccountPageButton" Click="AccountPageButton_Click" Background="#7289DA" Foreground="White">Account Page</Button>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Margin="0 0 0 10" Orientation="Horizontal">
-                <Button MinWidth="100" CornerRadius="10" Margin="0 0 10 0" x:Name="FavoritePageButton" Click="FavoritePageButton_Click" Background="#7289DA" Foreground="White">Favorite</Button>
-                <Button MinWidth="100" CornerRadius="10" Margin="0 0 0 0" x:Name="LogoutButton" Click="LogoutButton_Click" Background="#7289DA" Foreground="White">Logout</Button>
+                <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 10 0" x:Name="FavoritePageButton" Click="FavoritePageButton_Click" Background="#7289DA" Foreground="White">Favorite</Button>
+                <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 0 0" x:Name="LogoutButton" Click="LogoutButton_Click" Background="#7289DA" Foreground="White">Logout</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
