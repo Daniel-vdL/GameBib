@@ -30,7 +30,8 @@
         </Grid.RowDefinitions>
 
         <ListView Grid.Row="0" x:Name="GamesListView" Margin="20,20,20,0" MaxWidth="500" IsItemClickEnabled="True"
-                      ItemClick="GamesListView_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                      ItemClick="GamesListView_ItemClick" ItemContainerStyle="{StaticResource ListViewItemStyle}" 
+                      IsRightTapEnabled="True" RightTapped="GamesListView_RightTapped">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="localData:App">
                     <StackPanel>
