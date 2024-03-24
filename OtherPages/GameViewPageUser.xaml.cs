@@ -75,7 +75,7 @@ namespace GameBib.OtherPages
         {
             var searchInput = searchTextBox.Text.ToLower();
 
-            var filteredGames = games.applist.apps.Where(game => game.name.ToLower().Contains(searchInput)).ToList();
+            var filteredGames = games.applist.apps.Where(game => game.name.ToLower().Contains(searchInput) && !string.IsNullOrEmpty(game.name)).ToList();
             GamesListView.ItemsSource = filteredGames;
         }
     }
