@@ -29,7 +29,8 @@ namespace GameBib.Login
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             var username = UsernameTextbox.Text;
-            var password = PasswordTextbox.Text;
+            var passwordBox = PasswordTextbox;
+            var password = passwordBox.Password;
             var client = new HttpClient();
 
             var user = new User
