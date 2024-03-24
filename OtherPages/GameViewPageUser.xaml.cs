@@ -30,12 +30,8 @@ namespace GameBib.OtherPages
 
             LoadGames();
         }
-<<<<<<< Updated upstream
 
         public async void LoadGames()
-=======
-        public async void LoadApps()
->>>>>>> Stashed changes
         {
             string url = "https://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=B976BE1109B7F01F799B71141600B4F9&format=json";
 

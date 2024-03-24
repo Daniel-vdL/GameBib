@@ -42,18 +42,22 @@
         </ListView>
 
         <StackPanel BorderThickness="0 2 0 0" BorderBrush="#7289DA" Padding="10" Background="#2C2F33" Grid.Row="1" Orientation="Horizontal">
-            <Button Background="#7289DA" Foreground="White" x:Name="ReturnButton" Margin="20,0,10,0" Click="ReturnButton_Click">
+            <Button CornerRadius="10" Background="#7289DA" Foreground="White" x:Name="ReturnButton" Margin="20,0,10,0" Click="ReturnButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Margin="0 0 5 0" Symbol="Back"/>
                     <TextBlock Text="Go back"/>
                 </StackPanel>
             </Button>
-            <Button Background="#7289DA" Foreground="White" x:Name="RefreshGames" Click="RefreshGames_Click">
+            <Button CornerRadius="10" Background="#7289DA" Foreground="White" x:Name="RefreshGames" Click="RefreshGames_Click">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Margin="0 0 5 0" Symbol="Refresh"/>
                     <TextBlock Text="Refresh"/>
                 </StackPanel>
             </Button>
+            <StackPanel Orientation="Horizontal" Padding="15">
+                <TextBlock VerticalAlignment="Center" Margin="0 0 5 0" Text="Search:"/>
+                <TextBox MinWidth="250" MaxWidth="250" TextChanged="TextBox_TextChanged" x:Name="searchTextBox"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
