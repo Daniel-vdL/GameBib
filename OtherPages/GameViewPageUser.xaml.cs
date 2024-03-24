@@ -48,7 +48,6 @@ namespace GameBib.OtherPages
 
             var filteredGames = games.applist.apps.Where(game => !string.IsNullOrEmpty(game.name)).ToList();
             GamesListView.ItemsSource = filteredGames;
-
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
