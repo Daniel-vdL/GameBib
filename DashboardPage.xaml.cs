@@ -59,6 +59,16 @@ namespace GameBib
             this.Frame.Navigate(typeof(FavoriteViewPage));
         }
 
+        private void WantedGamesPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WantedGamesViewPage));
+        }
+
+        //private void PlayedGamesPageButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof());
+        //}
+
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LoginPage));
