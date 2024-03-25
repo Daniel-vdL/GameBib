@@ -19,8 +19,8 @@
     <None Remove="OtherPages\GameDetailViewPage.xaml" />
     <None Remove="OtherPages\GameViewPageAdmin.xaml" />
     <None Remove="OtherPages\GameViewPageUser.xaml" />
-    <None Remove="OtherPages\GameWantedViewPage.xaml" />
     <None Remove="OtherPages\GenreViewPageAdmin.xaml" />
+    <None Remove="OtherPages\WantedGamesViewPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,7 +63,7 @@
     <Folder Include="GenrePages\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="OtherPages\GameWantedViewPage.xaml">
+    <Page Update="OtherPages\WantedGamesViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
