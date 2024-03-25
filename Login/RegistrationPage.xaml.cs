@@ -29,9 +29,10 @@ namespace GameBib.Login
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             var username = UsernameTextbox.Text;
-            var password = PasswordTextbox.Text;
+            var passwordBox = PasswordTextbox;
+            var password = passwordBox.Password;
 
-            if (!string.IsNullOrWhiteSpace(username))
+            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
                 using var client = new HttpClient();
 
@@ -47,10 +48,21 @@ namespace GameBib.Login
 
                 var response = await client.PostAsync("https://localhost:7063/api/Users", context);
 
-                if (!response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode == false)
                 {
+                    ContentDialog ErrorDialog = new ContentDialog
+                    {
+                        Title = "Registration failed!",
+                        Content = "Click 'Ok' to continue",
+                        CloseButtonText = "Ok",
+                        XamlRoot = this.XamlRoot,
+                    };
+
+                    ContentDialogResult result = await ErrorDialog.ShowAsync();
+
                     return;
                 }
+
 
                 var answerJson = await response.Content.ReadAsStringAsync();
 
@@ -65,6 +77,18 @@ namespace GameBib.Login
 
                 this.Frame.Navigate(typeof(DashboardPage));
 
+            }
+            else
+            {
+                ContentDialog ErrorDialog = new ContentDialog
+                {
+                    Title = "Please check your input",
+                    Content = "Click 'Ok' to continue",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.XamlRoot,
+                };
+
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
             }
         }
 

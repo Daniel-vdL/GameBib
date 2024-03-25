@@ -31,6 +31,7 @@ namespace GameBib.Login
             var username = UsernameTextbox.Text;
             var passwordBox = PasswordTextbox;
             var password = passwordBox.Password;
+
             var client = new HttpClient();
 
             var user = new User

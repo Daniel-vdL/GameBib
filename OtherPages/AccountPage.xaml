@@ -8,29 +8,75 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#36393F">
 
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Page.Resources>
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0 10 0 10"/>
+            <Setter Property="CornerRadius"  Value="10"/>
+            <Setter Property="Background" Value="#2C2F33"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#7289DA"/>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0 0 0 20"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#7289DA"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="#7289DA"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Setter Property="CornerRadius"  Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#7289DA"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="TextBlockStyle2" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0 0 5 10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Margin="0,0,0,10" FontSize="24" FontWeight="Bold" Text="Account Details"/>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="0" Text="Account Details"/>
 
-        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+        <StackPanel Margin="0 0 0 10" Grid.Row="1" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="0 0 5 0" Text="Username: "/>
+                <TextBlock Style="{StaticResource TextBlockStyle2}" Text="Username: "/>
                 <TextBlock Text="{x:Bind localModel:User.CurrentUser.Username, Mode=OneWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TextBlockStyle2}" Text="E-mail: "/>
+                <TextBlock Text="ExampleUser@email.com"/>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
-            <TextBox Margin="0 0 0 10" x:Name="UsernameTextbox" PlaceholderText="Enter a username"/>
-            <TextBox Margin="0 0 0 10" x:Name="PasswordTextbox" PlaceholderText="Enter a password"/>
-            <Button Margin="0 0 0 10" Content="Change User Info" Padding="10,5" Width="200" x:Name="InfoChangeButton" Click="InfoChangeButton_Click"/>
-            <Button Content="Return" Padding="10,5" Width="200" x:Name="ReturnButton" Click="ReturnButton_Click"/>
-        </StackPanel>
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="2">
+            <StackPanel>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="UsernameTextbox" PlaceholderText="Enter a username"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" x:Name="PasswordTextbox" PlaceholderText="Enter a password"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="Change User Info" x:Name="InfoChangeButton" Click="InfoChangeButton_Click"/>
+            </StackPanel>
+        </Border>
+        
+        <Button Grid.Row="3" Content="Return" Padding="10,5" Width="200" x:Name="ReturnButton" Click="ReturnButton_Click" HorizontalAlignment="Center" Margin="0 10 0 0" Foreground="#7289DA" FontWeight="Bold"/>
+        
     </Grid>
 </Page>
