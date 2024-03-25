@@ -26,6 +26,7 @@ namespace GameBib.OtherPages
     /// </summary>
     public sealed partial class WantedGamesViewPage : Page
     {
+        public static List<string> WantedGames { get; } = new List<string>();
         public WantedGamesViewPage()
         {
             this.InitializeComponent();
@@ -62,7 +63,19 @@ namespace GameBib.OtherPages
 
         private void RemoveGame_Click(object sender, RoutedEventArgs e)
         {
+            if (sender is Button button)
+            {
+                // Get the DataContext of the button, which should be the game object
+                if (button.DataContext is App game)
+                {
+                    // Assuming wantedGameNames is accessible in this scope
+                    WantedGames.Remove(game.name);
 
+                    // Reload the wanted games list
+                    LoadWantedGames(WantedGames);
+                    LoadWantedGames(WantedGames);
+                }
+            }
         }
 
         private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
