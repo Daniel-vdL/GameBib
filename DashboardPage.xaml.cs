@@ -26,11 +26,6 @@ namespace GameBib
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            
-        }
-
         private void GamePageButton_Click(object sender, RoutedEventArgs e)
         {
             if (User.CurrentUser.statusId == 1)

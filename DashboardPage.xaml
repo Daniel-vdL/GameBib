@@ -24,7 +24,7 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Margin="0 0 0 10" Orientation="Horizontal">
                 <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 10 0" x:Name="FavoritePageButton" Click="FavoritePageButton_Click" Background="#7289DA" Foreground="White">Favorite</Button>
-                <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 10 10 0" x:Name="WantedGamesePageButton" Click="WantedGamesPageButton_Click" Background="#7289DA" Foreground="White">Your wanted games</Button>
+                <Button MinWidth="110" MaxWidth="120" CornerRadius="10" Margin="0 0 10 0" x:Name="WantedGamesePageButton" Click="WantedGamesPageButton_Click" Background="#7289DA" Foreground="White">Wanted Games</Button>
                 <Button MinWidth="110" MaxWidth="110" CornerRadius="10" Margin="0 0 0 0" x:Name="LogoutButton" Click="LogoutButton_Click" Background="#7289DA" Foreground="White">Logout</Button>
             </StackPanel>
         </StackPanel>

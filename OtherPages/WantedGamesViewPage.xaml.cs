@@ -16,14 +16,8 @@ using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace GameBib.OtherPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class WantedGamesViewPage : Page
     {
         public static List<string> WantedGames { get; } = new List<string>();
@@ -69,7 +63,7 @@ namespace GameBib.OtherPages
                 if (button.DataContext is App game)
                 {
                     // Assuming wantedGameNames is accessible in this scope
-                    WantedGames.Remove(game.name);
+                    //WantedGames.Remove(game.name);
 
                     // Reload the wanted games list
                     LoadWantedGames(WantedGames);

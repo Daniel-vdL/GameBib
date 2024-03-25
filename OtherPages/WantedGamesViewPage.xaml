@@ -8,12 +8,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#36393F">
+
+    <Page.Resources>
+        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#7289DA"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="#2C2F33"/>
+        </Style>
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Background" Value="#2C2F33"/>
+            <Setter Property="BorderBrush" Value="#7289DA"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="BorderThickness" Value="0 2 0 0"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Background" Value="#7289DA"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -30,12 +54,19 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Grid.Row="1" Padding="0 10 0 0" Margin="0 10 0 0" BorderBrush="White" BorderThickness="0 1 0 0 ">
-            <StackPanel Margin="0 10 0 10" Grid.Row="1" Orientation="Horizontal" 
-               HorizontalAlignment="Center" MaxWidth="500">
-                <Button Margin="0 0 10 0" x:Name="ReturnButton" Click="ReturnButton_Click">Go back</Button>
-                <Button x:Name="RefreshGames" Click="RefreshGames_Click">Refresh</Button>
-            </StackPanel>
-        </ListView>
+        <StackPanel Style="{StaticResource StackPanelStyle}" Grid.Row="1">
+            <Button Style="{StaticResource ButtonStyle}" x:Name="ReturnButton" Click="ReturnButton_Click" Margin="20 0 10 0">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Margin="0 0 5 0" Symbol="Back"/>
+                    <TextBlock Text="Go back"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" x:Name="RefreshGames" Click="RefreshGames_Click">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Margin="0 0 5 0" Symbol="Refresh"/>
+                    <TextBlock Text="Refresh"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>
