@@ -35,7 +35,7 @@ namespace GameBib.OtherPages
             var username = UsernameTextbox.Text;
             var password = PasswordTextbox.Text;
 
-            if (!string.IsNullOrWhiteSpace(username))
+            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
                 using var client = new HttpClient();
 
@@ -49,26 +49,39 @@ namespace GameBib.OtherPages
                 var userJson = JsonSerializer.Serialize(user);
                 var context = new StringContent(userJson, System.Text.Encoding.UTF8, "application/json");
 
-                try
-                {
-                    var response = await client.PutAsync($"https://localhost:7063/api/Users/{User.CurrentUser.Id}", context);
+                var response = await client.PutAsync($"https://localhost:7063/api/Users/{User.CurrentUser.Id}", context);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        User.CurrentUser = user;
-                        this.Frame.Navigate(typeof(AccountPage));
-                    }
-                    else
-                    {
-                        // Handle the failure scenario
-                        // For example, display an error message to the user
-                    }
-                }
-                catch (Exception ex)
+                if (response.IsSuccessStatusCode)
                 {
-                    // Handle any exceptions that might occur during the API call
-                    // For example, log the exception or display an error message to the user
+                    User.CurrentUser = user;
+                    this.Frame.Navigate(typeof(AccountPage));
                 }
+                else
+                {
+                    ContentDialog ErrorDialog = new ContentDialog
+                    {
+                        Title = "Error",
+                        Content = "Click 'Ok' to continue",
+                        CloseButtonText = "Ok",
+                        XamlRoot = this.XamlRoot,
+                    };
+
+                    ContentDialogResult result = await ErrorDialog.ShowAsync();
+
+                    return;
+                }
+            }
+            else
+            {
+                ContentDialog ErrorDialog = new ContentDialog
+                {
+                    Title = "Please check your input",
+                    Content = "Click 'Ok' to continue",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.XamlRoot,
+                };
+
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
             }
         }
 
