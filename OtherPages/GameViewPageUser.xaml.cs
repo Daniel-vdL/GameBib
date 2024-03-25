@@ -18,11 +18,13 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using static System.Net.WebRequestMethods;
 using System.Diagnostics;
+using Windows.UI.Popups;
 
 namespace GameBib.OtherPages
 {
     public sealed partial class GameViewPageUser : Page
     {
+        public static List<string> WantedGames { get; } = new List<string>();
         public GameViewPageUser()
         {
             this.InitializeComponent();
@@ -58,7 +60,27 @@ namespace GameBib.OtherPages
 
         private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
         {
-            //
+            var selectedGame = (Models.App)((FrameworkElement)e.OriginalSource).DataContext;
+
+            var messageDialog = new MessageDialog($"Do you want to add {selectedGame.name} to your wanted games?");
+            messageDialog.Commands.Add(new UICommand("Yes", async (command) =>
+            {               
+                if (!WantedGames.Contains(selectedGame.name))
+                {
+                    WantedGames.Add(selectedGame.name);
+                    var dialog = new MessageDialog($"{selectedGame.name} has been added to your wanted games!");
+                    await dialog.ShowAsync();
+                }
+                else
+                {
+                    var dialog = new MessageDialog($"{selectedGame.name} is already in your wanted games!");
+                    await dialog.ShowAsync();
+                }
+            }));
+            messageDialog.Commands.Add(new UICommand("No"));
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
         }
 
         private void RefreshGames_Click(object sender, RoutedEventArgs e)
