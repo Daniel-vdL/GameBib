@@ -10,6 +10,8 @@ namespace GameBib.Models
     {
         public int appid { get; set; }
         public string name { get; set; }
+
+        public static List<string> WantedGames { get; } = new List<string>();
     }
 
     public class AppList
