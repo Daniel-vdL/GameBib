@@ -24,7 +24,9 @@ namespace GameBib.OtherPages
 {
     public sealed partial class GameViewPageUser : Page
     {
-        public static List<string> WantedGames { get; } = new List<string>();
+        public static List<string> WantedGames { get; } = new List<string>();     
+        private RootObject games;
+        
         public GameViewPageUser()
         {
             this.InitializeComponent();
@@ -34,7 +36,6 @@ namespace GameBib.OtherPages
 
         public async void LoadGames()
         {
-
             string url = "https://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=B976BE1109B7F01F799B71141600B4F9&format=json";
 
             var client = new HttpClient();
@@ -46,11 +47,10 @@ namespace GameBib.OtherPages
                 PropertyNameCaseInsensitive = true,
             };
 
-            var games = JsonSerializer.Deserialize<RootObject>(content, options);
+            games = JsonSerializer.Deserialize<RootObject>(content, options); // Assign to the class-level variable
 
             var filteredGames = games.applist.apps.Where(game => !string.IsNullOrEmpty(game.name)).ToList();
             GamesListView.ItemsSource = filteredGames;
-
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
@@ -92,6 +92,14 @@ namespace GameBib.OtherPages
         {
             var selectedGame = (Models.App)e.ClickedItem;
             Frame.Navigate(typeof(GameDetailViewPage), selectedGame);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchInput = searchTextBox.Text.ToLower();
+
+            var filteredGames = games.applist.apps.Where(game => game.name.ToLower().Contains(searchInput) && !string.IsNullOrEmpty(game.name)).ToList();
+            GamesListView.ItemsSource = filteredGames;
         }
     }
 }

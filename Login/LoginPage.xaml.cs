@@ -21,6 +21,9 @@ namespace GameBib.Login
 {
     public sealed partial class LoginPage : Page
     {
+        private int failedLoginAttempts = 0;
+        private DateTime lastFailedLoginTime;
+
         public LoginPage()
         {
             this.InitializeComponent();
@@ -28,8 +31,28 @@ namespace GameBib.Login
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            // Check if the user is currently blocked
+            if (failedLoginAttempts >= 3 && (DateTime.Now - lastFailedLoginTime).TotalMinutes < 5) // Block for 5 minutes after 3 failed attempts
+            {
+                TimeSpan remainingTime = TimeSpan.FromMinutes(5) - (DateTime.Now - lastFailedLoginTime);
+
+                ContentDialog ErrorDialog = new ContentDialog
+                {
+                    Title = "Too many failed login attempts",
+                    Content = $"Your account is temporarily blocked. Please try again later. \nRemaining time: {remainingTime:mm\\:ss}",
+                    CloseButtonText = "Ok",
+                    XamlRoot = this.XamlRoot,
+                };
+
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
+
+                return;
+            }
+
             var username = UsernameTextbox.Text;
-            var password = PasswordTextbox.Text;
+            var passwordBox = PasswordTextbox;
+            var password = passwordBox.Password;
+
             var client = new HttpClient();
 
             var user = new User
@@ -46,6 +69,9 @@ namespace GameBib.Login
 
             if (response.IsSuccessStatusCode == false)
             {
+                failedLoginAttempts++;
+                lastFailedLoginTime = DateTime.Now;
+
                 ContentDialog ErrorDialog = new ContentDialog
                 {
                     Title = "Login failed!",
@@ -55,22 +81,25 @@ namespace GameBib.Login
                 };
 
                 ContentDialogResult result = await ErrorDialog.ShowAsync();
-
-                return;
             }
-
-            var answerJson = await response.Content.ReadAsStringAsync();
-
-            var options = new JsonSerializerOptions
+            else
             {
-                PropertyNameCaseInsensitive = true,
-            };
+                // Reset failed login attempts on successful login
+                failedLoginAttempts = 0;
 
-            var answerUser = JsonSerializer.Deserialize<User>(answerJson, options);
+                var answerJson = await response.Content.ReadAsStringAsync();
 
-            User.CurrentUser = answerUser;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
 
-            this.Frame.Navigate(typeof(DashboardPage));
+                var answerUser = JsonSerializer.Deserialize<User>(answerJson, options);
+
+                User.CurrentUser = answerUser;
+
+                this.Frame.Navigate(typeof(DashboardPage));
+            }
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)

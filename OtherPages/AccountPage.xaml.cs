@@ -1,5 +1,4 @@
 using GameBib.Models;
-using GameBib.OtherPages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -17,20 +16,24 @@ using System.Text.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-namespace GameBib.Login
+namespace GameBib.OtherPages
 {
-    public sealed partial class RegistrationPage : Page
+    public sealed partial class AccountPage : Page
     {
-        public RegistrationPage()
+        public AccountPage()
         {
             this.InitializeComponent();
         }
 
-        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void ReturnButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(DashboardPage));
+        }
+
+        private async void InfoChangeButton_Click(object sender, RoutedEventArgs e)
         {
             var username = UsernameTextbox.Text;
-            var passwordBox = PasswordTextbox;
-            var password = passwordBox.Password;
+            var password = PasswordTextbox.Text;
 
             if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
@@ -38,21 +41,26 @@ namespace GameBib.Login
 
                 var user = new User
                 {
+                    Id = User.CurrentUser.Id,
                     Username = username,
-                    Password = password
+                    Password = password,
                 };
 
                 var userJson = JsonSerializer.Serialize(user);
+                var context = new StringContent(userJson, System.Text.Encoding.UTF8, "application/json");
 
-                var context = new StringContent(userJson, System.Text.Encoding.UTF8, "Application/Json");
+                var response = await client.PutAsync($"https://localhost:7063/api/Users/{User.CurrentUser.Id}", context);
 
-                var response = await client.PostAsync("https://localhost:7063/api/Users", context);
-
-                if (response.IsSuccessStatusCode == false)
+                if (response.IsSuccessStatusCode)
+                {
+                    User.CurrentUser = user;
+                    this.Frame.Navigate(typeof(AccountPage));
+                }
+                else
                 {
                     ContentDialog ErrorDialog = new ContentDialog
                     {
-                        Title = "Registration failed!",
+                        Title = "Error",
                         Content = "Click 'Ok' to continue",
                         CloseButtonText = "Ok",
                         XamlRoot = this.XamlRoot,
@@ -62,21 +70,6 @@ namespace GameBib.Login
 
                     return;
                 }
-
-
-                var answerJson = await response.Content.ReadAsStringAsync();
-
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                };
-
-                var answerUser = JsonSerializer.Deserialize<User>(answerJson, options);
-
-                User.CurrentUser = answerUser;
-
-                this.Frame.Navigate(typeof(DashboardPage));
-
             }
             else
             {
@@ -92,9 +85,5 @@ namespace GameBib.Login
             }
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(LoginPage));
-        }
     }
 }
