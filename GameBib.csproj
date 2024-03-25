@@ -21,6 +21,7 @@
     <None Remove="OtherPages\GameViewPageAdmin.xaml" />
     <None Remove="OtherPages\GameViewPageUser.xaml" />
     <None Remove="OtherPages\GenreViewPageAdmin.xaml" />
+    <None Remove="OtherPages\WantedGamesViewPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Login\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="OtherPages\WantedGamesViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
