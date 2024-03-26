@@ -79,7 +79,6 @@ namespace GameBib.OtherPages
             }));
             messageDialog.Commands.Add(new UICommand("No"));
 
-            // Show the message dialog
             await messageDialog.ShowAsync();
         }
 

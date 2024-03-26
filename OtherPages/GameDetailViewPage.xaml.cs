@@ -59,7 +59,7 @@ namespace GameBib.OtherPages
             if (appDetail != null && appDetail.ContainsKey(selectedGame.appid.ToString()))
             {
                 var gameDetail = appDetail[selectedGame.appid.ToString()];
-                if (gameDetail.Data != null)
+                if(gameDetail.Data != null) 
                 {
                     gameDetailsListView.ItemsSource = new List<AppData> { gameDetail.Data };
                 }

@@ -18,7 +18,7 @@ namespace GameBib.Models
         public string Type { get; set; }
         public string Name { get; set; }
         public int Steam_AppId { get; set; }
-        public int Required_Age { get; set; }
+        public string Required_Age { get; set; }
         public bool Is_Free { get; set; }
         public string Detailed_Description { get; set; }
         public string About_The_Game { get; set; }
