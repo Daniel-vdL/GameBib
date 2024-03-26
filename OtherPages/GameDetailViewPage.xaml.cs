@@ -15,6 +15,8 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Text.Json;
 using System.Net.Http;
 using GameBib.Models;
+using Windows.UI.WebUI;
+using System.Text.RegularExpressions;
 
 namespace GameBib.OtherPages
 {
@@ -38,6 +40,11 @@ namespace GameBib.OtherPages
             }
         }
 
+        private void returnButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GameViewPageUser));
+        }
+        
         public async void LoadAppDetail()
         {
             if (selectedGame == null)
@@ -59,7 +66,7 @@ namespace GameBib.OtherPages
             if (appDetail != null && appDetail.ContainsKey(selectedGame.appid.ToString()))
             {
                 var gameDetail = appDetail[selectedGame.appid.ToString()];
-                if(gameDetail.Data != null) 
+                if (gameDetail.Data != null)
                 {
                     gameDetailsListView.ItemsSource = new List<AppData> { gameDetail.Data };
                 }
@@ -76,16 +83,6 @@ namespace GameBib.OtherPages
                     ContentDialogResult result = await ErrorDialog.ShowAsync();
                 }
             }
-        }
-
-        private void returnButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(GameViewPageUser));
-        }
-
-        private void gameDetailsListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
         }
     }
 

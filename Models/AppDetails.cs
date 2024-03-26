@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GameBib.Models
@@ -18,7 +19,7 @@ namespace GameBib.Models
         public string Type { get; set; }
         public string Name { get; set; }
         public int Steam_AppId { get; set; }
-        public string Required_Age { get; set; }
+        public int Required_Age { get; set; }
         public bool Is_Free { get; set; }
         public string Detailed_Description { get; set; }
         public string About_The_Game { get; set; }
@@ -47,6 +48,23 @@ namespace GameBib.Models
         public string BackgroundRaw { get; set; }
         public ContentDescriptors Content_Descriptors { get; set; }
         public object Ratings { get; set; }
+
+        public string PlainTextAboutTheGame
+        {
+            get
+            {
+                return RemoveHtmlTags(About_The_Game);
+            }
+        }
+
+        private string RemoveHtmlTags(string input)
+        {
+            string plainText = Regex.Replace(input, "<.*?>", string.Empty);
+
+            plainText = Regex.Replace(plainText, @"(?<=[.!?])(?<!\s+)", " ");
+
+            return plainText;
+        }
     }
 
     public class Category

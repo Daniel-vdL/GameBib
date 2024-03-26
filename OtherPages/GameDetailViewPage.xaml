@@ -16,24 +16,26 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
+
         <ListView x:Name="gameDetailsListView">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="localData:AppData">
-                    <StackPanel Padding="10 0 10 0" 
-                                HorizontalAlignment="Center" 
-                                Orientation="Vertical"
-                                Margin="0 200 0 0"
-                                Grid.Row="0"
-                                Grid.Column="0">
-                        <TextBlock x:Name="gameNameTextbox" 
-                                   Text="{x:Bind Name}"                                
-                                   FontWeight="ExtraBold"
-                                   FontSize="24"/>
-                        <TextBlock x:Name="DescriptionTextBox" 
-                                   Text="{x:Bind About_The_Game}" 
-                                   FontStyle="Italic"/>
-                    </StackPanel>
+                    <Grid>
+                        <!-- Background Image -->
+                        <Image Source="{x:Bind Background}" Stretch="UniformToFill" Opacity="10"/>
+
+                        <!-- Content -->
+                        <StackPanel Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Margin="0 200 0 0">
+                            <TextBlock x:Name="gameNameTextbox" 
+                               Text="{x:Bind Name}"                                
+                               FontWeight="ExtraBold"
+                               FontSize="24"/>
+                            <TextBlock x:Name="DescriptionTextBox" 
+                               Text="{x:Bind PlainTextAboutTheGame}" 
+                               FontStyle="Italic"
+                               TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
