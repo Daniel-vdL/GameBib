@@ -15,6 +15,5 @@ namespace GameBib.Models
         public int? statusId { get; set; }
 
         public ICollection<FavoritedGame> FavoritedGames { get; set; }
-        public ICollection<FavoritedGenre> FavoritedGenres { get; set; }
     }
 }
