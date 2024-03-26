@@ -47,7 +47,7 @@ namespace GameBib.OtherPages
                 PropertyNameCaseInsensitive = true,
             };
 
-            games = JsonSerializer.Deserialize<RootObject>(content, options); // Assign to the class-level variable
+            games = JsonSerializer.Deserialize<RootObject>(content, options);
 
             var filteredGames = games.applist.apps.Where(game => !string.IsNullOrEmpty(game.name)).ToList();
             GamesListView.ItemsSource = filteredGames;
@@ -60,26 +60,26 @@ namespace GameBib.OtherPages
 
         private async void GamesListView_RightTapped(object sender, RoutedEventArgs e)
         {
-            var selectedGame = (Models.App)((FrameworkElement)e.OriginalSource).DataContext;
+            //var selectedGame = (Models.App)((FrameworkElement)e.OriginalSource).DataContext;
 
-            var messageDialog = new MessageDialog($"Do you want to add {selectedGame.name} to your wanted games?");
-            messageDialog.Commands.Add(new UICommand("Yes", async (command) =>
-            {               
-                if (!WantedGames.Contains(selectedGame.name))
-                {
-                    WantedGames.Add(selectedGame.name);
-                    var dialog = new MessageDialog($"{selectedGame.name} has been added to your wanted games!");
-                    await dialog.ShowAsync();
-                }
-                else
-                {
-                    var dialog = new MessageDialog($"{selectedGame.name} is already in your wanted games!");
-                    await dialog.ShowAsync();
-                }
-            }));
-            messageDialog.Commands.Add(new UICommand("No"));
+            //var messageDialog = new MessageDialog($"Do you want to add {selectedGame.name} to your wanted games?");
+            //messageDialog.Commands.Add(new UICommand("Yes", async (command) =>
+            //{               
+            //    if (!WantedGames.Contains(selectedGame.name))
+            //    {
+            //        WantedGames.Add(selectedGame.name);
+            //        var dialog = new MessageDialog($"{selectedGame.name} has been added to your wanted games!");
+            //        await dialog.ShowAsync();
+            //    }
+            //    else
+            //    {
+            //        var dialog = new MessageDialog($"{selectedGame.name} is already in your wanted games!");
+            //        await dialog.ShowAsync();
+            //    }
+            //}));
+            //messageDialog.Commands.Add(new UICommand("No"));
 
-            await messageDialog.ShowAsync();
+            //await messageDialog.ShowAsync();
         }
 
         private void RefreshGames_Click(object sender, RoutedEventArgs e)

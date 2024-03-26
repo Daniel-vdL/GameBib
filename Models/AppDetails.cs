@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace GameBib.Models
         public string Type { get; set; }
         public string Name { get; set; }
         public int Steam_AppId { get; set; }
-        public int Required_Age { get; set; }
+        public JsonElement Required_Age { get; set; }
         public bool Is_Free { get; set; }
         public string Detailed_Description { get; set; }
         public string About_The_Game { get; set; }
@@ -29,7 +30,7 @@ namespace GameBib.Models
         public string Capsule_Image { get; set; }
         public string Capsule_ImageV5 { get; set; }
         public string Website { get; set; }
-        public Dictionary<string, string> Pc_Requirements { get; set; }
+        public JsonElement Pc_Requirements { get; set; }
         public Dictionary<string, string> Recommended { get; set; }
         public List<string> MacRequirements { get; set; }
         public List<string> LinuxRequirements { get; set; }

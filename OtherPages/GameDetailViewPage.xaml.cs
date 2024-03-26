@@ -23,6 +23,7 @@ namespace GameBib.OtherPages
     public sealed partial class GameDetailViewPage : Page
     {
         private Models.App selectedGame;
+        public AppData gameDetails { get; set; }
 
         public GameDetailViewPage()
         {
@@ -44,7 +45,7 @@ namespace GameBib.OtherPages
         {
             this.Frame.Navigate(typeof(GameViewPageUser));
         }
-        
+
         public async void LoadAppDetail()
         {
             if (selectedGame == null)
@@ -66,24 +67,37 @@ namespace GameBib.OtherPages
             if (appDetail != null && appDetail.ContainsKey(selectedGame.appid.ToString()))
             {
                 var gameDetail = appDetail[selectedGame.appid.ToString()];
-                if (gameDetail.Data != null)
+                if (gameDetail.Data != null && gameDetail.Data.Background != null && IsImageUri(gameDetail.Data.Background))
                 {
-                    gameDetailsListView.ItemsSource = new List<AppData> { gameDetail.Data };
+                    // Load the details into the UI
+                    gameDetails = gameDetail.Data;
+                    Bindings.Update(); // Ensure the UI updates with the new data
                 }
                 else
                 {
                     ContentDialog ErrorDialog = new ContentDialog
                     {
-                        Title = "This App does not have data!",
+                        Title = "This App does not have the correct data!",
                         Content = "Click 'Ok' to continue",
                         CloseButtonText = "Ok",
                         XamlRoot = this.XamlRoot,
                     };
 
                     ContentDialogResult result = await ErrorDialog.ShowAsync();
+
+                    this.Frame.Navigate(typeof(GameViewPageUser));
                 }
             }
         }
+        private bool IsImageUri(string uriString)
+        {
+            // Try parsing the URI
+            if (Uri.TryCreate(uriString, UriKind.Absolute, out Uri uri))
+            {
+                // Check if it's HTTP or HTTPS scheme (you may adjust this depending on your requirements)
+                return uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps;
+            }
+            return false;
+        }
     }
-
 }
